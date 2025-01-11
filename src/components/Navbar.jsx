@@ -1,37 +1,5 @@
-// import React from 'react';
-
-// const Navbar = () => {
-//     return (
-//         <nav className="bg-white border-b border-gray-100">
-//             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-//                 <div className="flex justify-between h-16 items-center">
-//                     <div className="flex items-center">
-//                         <span className="text-2xl font-bold text-blue-600">KoinX</span>
-//                     </div>
-//                     <div className="hidden md:flex items-center space-x-8">
-//                         <a href="#" className="text-gray-900 hover:text-gray-700">
-//                             Crypto Taxes
-//                         </a>
-//                         <a href="#" className="text-gray-900 hover:text-gray-700">
-//                             Free Tools
-//                         </a>
-//                         <a href="#" className="text-gray-900 hover:text-gray-700">
-//                             Resource Center
-//                         </a>
-//                         <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700">
-//                             Get Started
-//                         </button>
-//                     </div>
-//                 </div>
-//             </div>
-//         </nav>
-//     );
-// };
-
-// export default Navbar;
-
 import React, { useState } from 'react';
-
+import logo from "../assets/logo.svg";
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -40,7 +8,8 @@ const Navbar = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-16 items-center">
                     <div className="flex items-center">
-                        <span className="text-2xl font-bold text-blue-600">KoinX</span>
+                        {/* <span className="text-2xl font-bold text-blue-600">KoinX</span> */}
+                        <img src={logo} alt="Logo" className="h-14 lg:h-18"/>
                     </div>
 
                     {/* Mobile menu button */}

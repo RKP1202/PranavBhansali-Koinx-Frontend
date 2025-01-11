@@ -1,4 +1,6 @@
 import React from 'react';
+import bcImg1 from "../../assets/bc1.jpg";
+import bcImg2 from "../../assets/bc2.jpg";
 
 const AboutBitcoin = () => {
     return (
@@ -27,7 +29,7 @@ const AboutBitcoin = () => {
                         <div className="bg-gradient-to-r from-green-400 to-blue-500 p-4 rounded-xl text-white">
                             <div className="flex justify-between items-start mb-4">
                                 <img
-                                    src="/api/placeholder/160/80"
+                                    src={bcImg1}
                                     alt="Calculate profits"
                                     className="w-40 h-20 object-cover"
                                 />
@@ -41,7 +43,7 @@ const AboutBitcoin = () => {
                         <div className="bg-gradient-to-r from-orange-400 to-red-500 p-4 rounded-xl text-white">
                             <div className="flex justify-between items-start mb-4">
                                 <img
-                                    src="/api/placeholder/160/80"
+                                    src={bcImg2}
                                     alt="Calculate tax"
                                     className="w-40 h-20 object-cover"
                                 />

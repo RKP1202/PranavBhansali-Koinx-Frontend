@@ -1,27 +1,31 @@
 import { useState, useEffect } from 'react';
+const COIN_GECKO_URL = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=inr%2Cusd&include_24hr_change=true";
 
 const useFetchBitcoinPrice = () => {
-    const [priceData, setPriceData] = useState(null);
+    const [cryptoInfo, setCryptoInfo] = useState({
+        dollarValue: 0,
+        rupeeValue: 0,
+        usdChangeIn24h: 0,
+        positiveGrowth: true
+    });
 
     useEffect(() => {
-        const fetchPrice = async () => {
-            try {
-                const response = await fetch(
-                    'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd,inr&include_24hr_change=true'
-                );
-                const data = await response.json();
-                setPriceData(data.bitcoin);
-            } catch (error) {
-                console.error('Error fetching price:', error);
-            }
-        };
+        fetch(COIN_GECKO_URL)
+            .then(res => res.json())
+            .then(data => {
+                const bitcoinData = data.bitcoin;
 
-        fetchPrice();
-        const interval = setInterval(fetchPrice, 30000);
-        return () => clearInterval(interval);
+                setCryptoInfo({
+                    dollarValue: bitcoinData.usd,
+                    rupeeValue: bitcoinData.inr,
+                    usdChangeIn24h: bitcoinData.usd_24h_change,
+                    positiveGrowth: bitcoinData.usd_24h_change >= 0
+                })
+            })
     }, []);
 
-    return priceData;
+
+    return cryptoInfo;
 };
 
 export default useFetchBitcoinPrice;

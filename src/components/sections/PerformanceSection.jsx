@@ -1,55 +1,34 @@
 import React from 'react';
+import Section from "../utils/Section.jsx";
+import { useEffect, useState } from "react";
+import commaNumber from "comma-number";
+import useFetchBitcoinPrice from '../../hooks/useFetchBitcoinPrice.js';
+import BitcoinPriceSection from './BitcoinPriceSection.jsx';
+import TradingViewChart from '../TradingViewChart.jsx';
+import bitcoinImg from "../../assets/bitcoin-logo.svg";
 
 const PerformanceSection = () => {
-    const todayData = {
-        low: '46,930.22',
-        high: '46,930.22',
-        current: '$46,627.83'
-    };
 
-    const weekData = {
-        low: '46,930.22',
-        high: '46,930.22'
-    };
+    const cryptoInfo = useFetchBitcoinPrice();
 
     return (
-        <div className="bg-white p-6 rounded-lg mb-6">
-            <h2 className="text-xl font-bold mb-6">Performance</h2>
-
-            {/* Today's Range */}
-            <div className="mb-6">
-                <div className="flex justify-between text-sm text-gray-500 mb-2">
-                    <span>Today's Low</span>
-                    <span>Today's High</span>
-                </div>
-                <div className="relative">
-                    <div className="h-1.5 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 rounded-full" />
-                    <div className="flex justify-between mt-1">
-                        <span className="text-sm">{todayData.low}</span>
-                        <span className="absolute left-1/2 transform -translate-x-1/2 text-sm">
-                            {todayData.current}
-                        </span>
-                        <span className="text-sm">{todayData.high}</span>
-                    </div>
-                </div>
+        <Section>
+            <div className="flex gap-2 items-center">
+                <img className="w-7 h-7" src={bitcoinImg} />
+                <h3 className="font-semibold text-xl">Bitcoin</h3>
+                <span className="uppercase text-gray-500 text-[12px] font-semibold">BTC</span>
+                <span className="text-white bg-[#768396] rounded-lg py-2 px-2 text-sm ml-4">Rank #1</span>
             </div>
-
-            {/* 52W Range */}
-            <div>
-                <div className="flex justify-between text-sm text-gray-500 mb-2">
-                    <span>52W Low</span>
-                    <span>52W High</span>
-                </div>
-                <div className="relative">
-                    <div className="h-1.5 bg-gradient-to-r from-red-500 via-yellow-500 to-green-500 rounded-full" />
-                    <div className="flex justify-between mt-1">
-                        <span className="text-sm">{weekData.low}</span>
-                        <span className="text-sm">{weekData.high}</span>
-                    </div>
-                </div>
+            <div className="grid grid-cols-crypto-info gap-x-4 gap-y-2 mt-2 items-center">
+                <span className="text-2xl font-semibold">${commaNumber(cryptoInfo.dollarValue)}</span>
+                <span className={`rounded-lg text-[12px] px-2 font-medium ${cryptoInfo.positiveGrowth ? "bg-green-100 text-green-500" : "bg-red-100 text-red-500"}`}>{cryptoInfo.positiveGrowth ? "▲" : "▼"} {cryptoInfo.usdChangeIn24h.toFixed(2)}%</span>
+                <span>(24H)</span>
+                <span className="font-medium text-base">₹{commaNumber(cryptoInfo.rupeeValue)}</span>
             </div>
-        </div>
-    );
+            <hr />
+            <TradingViewChart />
+        </Section>
+    )
 };
 
 export default PerformanceSection;

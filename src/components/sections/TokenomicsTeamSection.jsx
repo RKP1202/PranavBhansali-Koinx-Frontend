@@ -1,26 +1,18 @@
-import React from 'react';
-import TokenomicsSection from './Tokenomic';
-import TeamSection from './TeamSection';
+import Section from "../utils/Section.jsx";
+import TeamMemberInfo from "../utils/TeamMemberInfo.jsx";
+import person1 from "../../assets/person1.jpg";
+import person2 from "../../assets/person2.jpg";
+import person3 from "../../assets/person3.jpg";
 
-const TokenomicsTeamPage = () => {
-    const distributionData = [
-        { name: 'Crowdsale ', value: 75 },
-        { name: 'Foundation', value: 25 }
-    ];
-
-    const teamData = [
-        { name: 'Virendra', designation: 'CEO', image: '/api/placeholder/100/100', description: 'Lorem ipsum...' },
-        { name: 'Yogesh Sharma', designation: 'CTO', image: '/api/placeholder/100/100', description: 'Lorem ipsum...' },
-        { name: 'Pranav Bhansali', designation: 'CTO', image: '/api/placeholder/100/100', description: 'Lorem ipsum...' }
-    ];
-
-    const COLORS = ['#4885ed', '#ff7043'];
-
+const TokenomicsTeamSection = () => {
     return (
-        <div className="max-w-6xl mx-auto p-6">
-            <TeamSection teamData={teamData} />
-        </div>
-    );
-};
+        <Section heading="Team">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet animi aperiam architecto eligendi incidunt magni nemo obcaecati quia quod ratione?</p>
+            <TeamMemberInfo name="John Smith" src={person1}/>
+            <TeamMemberInfo name="Elina Williams" src={person2}/>
+            <TeamMemberInfo name="John Smith" src={person3}/>
+        </Section>
+    )
+}
 
-export default TokenomicsTeamPage;
+export default TokenomicsTeamSection;
